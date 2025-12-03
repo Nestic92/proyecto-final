@@ -172,7 +172,7 @@ function displayProducts(productsToDisplay) {
     }
     
     container.innerHTML = productsToDisplay.map(product => {
-        const badgeClass = `badge-${product.category}`;
+        const badgeClass = badge-${product.category};
         const categoryName = getCategoryName(product.category);
         
         return `
@@ -373,21 +373,23 @@ function updateCartUI() {
 
 function updateCartCount() {
     const count = cart.reduce((total, item) => total + item.quantity, 0);
-    document.getElementById('cart-count').textContent = count;
+    const el = document.getElementById('cart-count');
+    if (el) el.textContent = count;
 }
 
 
 function updateCartItems() {
     const container = document.getElementById('cart-body');
     const emptyMessage = document.getElementById('empty-cart-message');
+    if (!container) return;
     
     if (cart.length === 0) {
-        emptyMessage.style.display = 'block';
+        if (emptyMessage) emptyMessage.style.display = 'block';
         container.innerHTML = '';
         return;
     }
     
-    emptyMessage.style.display = 'none';
+    if (emptyMessage) emptyMessage.style.display = 'none';
     
     container.innerHTML = cart.map(item => `
         <div class="cart-item">
@@ -426,7 +428,8 @@ function updateCartItems() {
 
 function updateCartTotal() {
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    document.getElementById('cart-total').textContent = total.toFixed(2);
+    const el = document.getElementById('cart-total');
+    if (el) el.textContent = total.toFixed(2);
 }
 
 
@@ -610,7 +613,7 @@ function showAlert(message, type) {
     }[type] || 'alert-info';
     
     const alertDiv = document.createElement('div');
-    alertDiv.className = `alert ${alertClass} alert-dismissible fade show position-fixed`;
+    alertDiv.className = alert ${alertClass} alert-dismissible fade show position-fixed;
     alertDiv.style.top = '20px';
     alertDiv.style.right = '20px';
     alertDiv.style.zIndex = '9999';
@@ -645,6 +648,11 @@ function loadCartFromLocalStorage() {
         updateCartUI();
     }
 }
+
+
+loadCartFromLocalStorage();
+}
+
 
 
 loadCartFromLocalStorage();
