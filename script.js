@@ -261,30 +261,6 @@ async function loadReviews() {
 }
 
 
-function displayReviews(reviews) {
-    const container = document.getElementById('reviews-grid');
-    
-    container.innerHTML = reviews.map(review => `
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card review-card h-100">
-                <div class="review-header">
-                    <img src="https://i.pravatar.cc/100?img=${review.id}" 
-                         alt="${review.name}" 
-                         class="review-avatar">
-                    <div>
-                        <h6 class="mb-1">${review.name}</h6>
-                        <div class="review-stars">
-                            ${'★'.repeat(5)}
-                        </div>
-                    </div>
-                </div>
-                <p class="review-text">"${review.body}"</p>
-                <small class="text-muted">${review.email}</small>
-            </div>
-        </div>
-    `).join('');
-}
-
 
 function getFallbackReviews() {
     return [
